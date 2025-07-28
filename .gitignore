@@ -1,0 +1,9 @@
+bin
+obj
+TestResults
+.vs
+*.csproj.user
+logs/
+*.db
+*.db-shm
+*.db-wal

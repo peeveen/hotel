@@ -1,0 +1,15 @@
+# This should fail due to having two room 202s
+- Name: Impossible Hotel 1
+  Rooms:
+    - Number: 101
+      Capacity: 2
+    - Number: 102
+      Capacity: 3
+    - Number: 103
+      Capacity: 1
+    - Number: 201
+      Capacity: 1
+    - Number: 202
+      Capacity: 1
+    - Number: 202
+      Capacity: 3

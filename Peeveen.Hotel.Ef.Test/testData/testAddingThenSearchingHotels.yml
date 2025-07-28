@@ -1,0 +1,42 @@
+- Name: Test Hotel 1
+  Rooms:
+    - Number: 101
+      Capacity: 2
+    - Number: 102
+      Capacity: 3
+    - Number: 103
+      Capacity: 1
+    - Number: 201
+      Capacity: 1
+    - Number: 202
+      Capacity: 1
+    - Number: 203
+      Capacity: 3
+- Name: Test Hotel 2
+  Rooms:
+    - Number: 1101
+      Capacity: 1
+    - Number: 1102
+      Capacity: 1
+    - Number: 1201
+      Capacity: 4
+    - Number: 1202
+      Capacity: 1
+    - Number: 1301
+      Capacity: 2
+    - Number: 1302
+      Capacity: 2
+- Name: Toast Hotel 3
+  Rooms:
+    - Number: 101
+      Capacity: 2
+    - Number: 102
+      Capacity: 2
+    - Number: 103
+      Capacity: 2
+    - Number: 201
+      Capacity: 2
+    - Number: 301
+      Capacity: 2
+    - Number: 401
+      Capacity: 6

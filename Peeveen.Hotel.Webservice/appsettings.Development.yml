@@ -1,0 +1,13 @@
+Logging:
+  LogLevel:
+    Default: Information
+    Microsoft.AspNetCore: Warning
+
+Service:
+  DatabaseType: sqlite
+  ConnectionString: Data Source=./hotel.db
+
+Kestrel:
+  Endpoints:
+    http:
+      Url: http://localhost:8080
