@@ -1,7 +1,9 @@
 using System.Dynamic;
 using System.Net;
 using System.Net.Mime;
+using System.Reflection;
 using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Any;
@@ -23,6 +25,14 @@ builder.Configuration.AddEnvironmentVariables();
 builder.Configuration.AddCommandLine(args);
 var serviceConfigSection = builder.Configuration.GetRequiredSection(ServiceOptionsConfigurationSectionName);
 
+Type[] unserializableTypes = [typeof(Type), typeof(PropertyInfo), typeof(FieldInfo)];
+void IgnoreUnserializableProperties(JsonTypeInfo ti) {
+	if (ti.Kind != JsonTypeInfoKind.Object) return;
+	for (int f = ti.Properties.Count - 1; f >= 0; --f)
+		if (unserializableTypes.Contains(ti.Properties[f].PropertyType))
+			ti.Properties.RemoveAt(f);
+}
+
 var services = builder.Services;
 services
 	.AddScoped<HotelApi>()
@@ -42,8 +52,13 @@ services
 	.AddSwaggerGen();
 services.AddOptions<ServiceOptions>().Bind(serviceConfigSection).ValidateOnStart();
 services.AddMvc().AddHttpExceptions(options =>
-	options.ShouldLogException = _ => true
-);
+	options.IncludeExceptionDetails = _ => true
+).AddJsonOptions(options => {
+	options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+	options.JsonSerializerOptions.TypeInfoResolver = new DefaultJsonTypeInfoResolver {
+		Modifiers = { IgnoreUnserializableProperties }
+	};
+});
 
 var app = builder.Build();
 app

@@ -13,4 +13,3 @@ NOTES
   - webservice unit tests (the API tests cover most of the functionality)
   - logging (though I am familiar with the new `LoggerMessage` stuff from Microsoft)
   - metrics/tracing (using `ActivitySource`/`MeterFactory` etc)
-  - `DbUpdateException` handling in HTTP response (contains a few unserializable properties)
